@@ -1,22 +1,20 @@
 import React, { Component } from "react"
 
 class Betting extends Component {
-  state = { owner: null }
+  state = { cacheOwner: null }
 
-  async componentDidMount() {
+  componentDidMount() {
     const { drizzle, drizzleState } = this.props;
     const contract = drizzle.contracts.Betting;
-    const owner = await contract.methods.owner().call()
-    console.log(owner)
-    this.setState({ owner })
+    const cacheOwner = contract.methods.owner.cacheCall()
+    this.setState({ cacheOwner })
   }
 
   render() {
-    // const { Betting } = this.props.drizzleState.contracts;
-    // const owner = Betting.owner[this.state.owner];
-    // console.log(owner)
+    const { Betting } = this.props.drizzleState.contracts;
+    const owner = Betting.owner[this.state.cacheOwner]
     return (
-      <div>owner: {this.state.owner}</div>
+      <div>owner: {owner && owner.value}</div>
     )
   }
 }
