@@ -10,8 +10,8 @@ class Betting extends Component {
   }
 
   componentDidMount() {
-    const { drizzle, drizzleState } = this.props;
-    const contract = drizzle.contracts.Betting;
+    const { drizzle, drizzleState } = this.props
+    const contract = drizzle.contracts.Betting
     const totalSlots = contract.methods.totalSlots.cacheCall()
     const totalBet = contract.methods.totalBet.cacheCall()
     const numberOfBets = contract.methods.numberOfBets.cacheCall()
@@ -21,12 +21,13 @@ class Betting extends Component {
   }
 
   render() {
-    const { Betting } = this.props.drizzleState.contracts;
-    const web3 = window.web3;
-    const totalSlots = Betting.totalSlots[this.state.totalSlots];
-    const totalBet = Betting.totalBet[this.state.totalBet];
-    const numberOfBets = Betting.numberOfBets[this.state.numberOfBets];
-    const lastWinnerNumber = Betting.lastWinnerNumber[this.state.lastWinnerNumber];
+    const { Betting } = this.props.drizzleState.contracts
+    if (!this.props.drizzleState.drizzleStatus.initialized) return "Loading betting..."
+    const web3 = window.web3
+    const totalSlots = Betting.totalSlots[this.state.totalSlots]
+    const totalBet = Betting.totalBet[this.state.totalBet]
+    const numberOfBets = Betting.numberOfBets[this.state.numberOfBets]
+    const lastWinnerNumber = Betting.lastWinnerNumber[this.state.lastWinnerNumber]
     return (
       <div className="container">
         <div className="row">
@@ -64,7 +65,7 @@ class Betting extends Component {
             <div className="card-counter total-bet">
               <i className="fab fa-ethereum"></i>
               <span className="count-numbers" id="total-bet">
-                { totalBet && totalBet.value }
+                { totalBet && window.web3.fromWei(totalBet.value) } ETH
               </span>
               <span className="count-name">Total Betted</span>
             </div>
@@ -75,4 +76,4 @@ class Betting extends Component {
   }
 }
 
-export default Betting;
+export default Betting
