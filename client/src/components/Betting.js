@@ -25,13 +25,12 @@ class Betting extends Component {
   }
 
   render() {
-    if (!this.props.initialized) return "Loading..."
     const web3 = window.web3
     const contract = this.props.contract;
     const totalSlots = contract.totalSlots[this.state.totalSlots]
-    // const totalBet = contract.totalBet[this.state.totalBet]
-    // const numberOfBets = contract.numberOfBets[this.state.numberOfBets]
-    // const lastWinnerNumber = contract.lastWinnerNumber[this.state.lastWinnerNumber]
+    const totalBet = contract.totalBet[this.state.totalBet]
+    const numberOfBets = contract.numberOfBets[this.state.numberOfBets]
+    const lastWinnerNumber = contract.lastWinnerNumber[this.state.lastWinnerNumber]
     return (
       <div className="container">
         <div className="row">
@@ -45,7 +44,7 @@ class Betting extends Component {
             </div>
           </div>
 
-          {/* <div className="col-md-3">
+          <div className="col-md-3">
             <div className="card-counter last-winner">
               <i className="fa fa-trophy"></i>
               <span className="count-numbers" id="last-winner-number">
@@ -69,11 +68,11 @@ class Betting extends Component {
             <div className="card-counter total-bet">
               <i className="fab fa-ethereum"></i>
               <span className="count-numbers" id="total-bet">
-                { totalBet && window.web3.fromWei(totalBet.value) } ETH
+                { totalBet && web3.fromWei(totalBet.value) } ETH
               </span>
               <span className="count-name">Total Betted</span>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     )
