@@ -1,7 +1,7 @@
 // import './App.css'
 import React, { Component } from 'react';
 import AccountContainer from './containers/AccountContainer'
-import Betting from './components/Betting'
+import BettingContainer from './containers/BettingContainers'
 import Numbers from './components/Numbers'
 import Players from './components/Players'
 
@@ -13,9 +13,9 @@ class App extends Component {
           <div className="col-xs-12 text-center">
             <h1>Yolo Betting</h1>
             <AccountContainer />
-            {/* <hr />
-            <Betting/>
-            <hr />
+             <hr />
+            <BettingContainer />
+            {/*<hr />
             <Numbers/>
             <hr />
             <Players/> */}

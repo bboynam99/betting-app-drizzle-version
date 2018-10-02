@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import './../index.css'
+import PropTypes from 'prop-types'
 
 class Betting extends Component {
-  state  = {
-    totalSlots: null,
-    totalBet: null,
-    numberOfBets: null,
-    lastWinnerNumber: null,
+  constructor(props, context) {
+    super(props)
+    this.Betting = context.drizzle.contracts.Betting;
+    this.state = {
+      totalSlots: null,
+      totalBet: null,
+      numberOfBets: null,
+      lastWinnerNumber: null,
+    }
   }
 
   componentDidMount() {
-    const { drizzle, drizzleState } = this.props
-    const contract = drizzle.contracts.Betting
+    const contract = this.Betting;
     const totalSlots = contract.methods.totalSlots.cacheCall()
     const totalBet = contract.methods.totalBet.cacheCall()
     const numberOfBets = contract.methods.numberOfBets.cacheCall()
@@ -21,13 +25,13 @@ class Betting extends Component {
   }
 
   render() {
-    const { Betting } = this.props.drizzleState.contracts
-    if (!this.props.drizzleState.drizzleStatus.initialized) return "Loading betting..."
+    if (!this.props.initialized) return "Loading..."
     const web3 = window.web3
-    const totalSlots = Betting.totalSlots[this.state.totalSlots]
-    const totalBet = Betting.totalBet[this.state.totalBet]
-    const numberOfBets = Betting.numberOfBets[this.state.numberOfBets]
-    const lastWinnerNumber = Betting.lastWinnerNumber[this.state.lastWinnerNumber]
+    const contract = this.props.contract;
+    const totalSlots = contract.totalSlots[this.state.totalSlots]
+    // const totalBet = contract.totalBet[this.state.totalBet]
+    // const numberOfBets = contract.numberOfBets[this.state.numberOfBets]
+    // const lastWinnerNumber = contract.lastWinnerNumber[this.state.lastWinnerNumber]
     return (
       <div className="container">
         <div className="row">
@@ -41,7 +45,7 @@ class Betting extends Component {
             </div>
           </div>
 
-          <div className="col-md-3">
+          {/* <div className="col-md-3">
             <div className="card-counter last-winner">
               <i className="fa fa-trophy"></i>
               <span className="count-numbers" id="last-winner-number">
@@ -69,11 +73,15 @@ class Betting extends Component {
               </span>
               <span className="count-name">Total Betted</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     )
   }
+}
+
+Betting.contextTypes = {
+  drizzle: PropTypes.object
 }
 
 export default Betting

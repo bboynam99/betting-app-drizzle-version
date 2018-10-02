@@ -16,6 +16,7 @@
   "dependencies": {
     "history": "^4.7.2",
     "lite-server": "^2.4.0",
+    "prop-types": "^15.6.2",
     "react-router-redux": "^4.0.8",
     "redux-thunk": "^2.3.0"
   }
