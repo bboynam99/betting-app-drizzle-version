@@ -2,13 +2,15 @@ import React from 'react'
 import './../index.css'
 
 class Account extends React.Component {
+  constructor(props) {
+    super(props)
+    console.log(this.props.accounts)
+  }
+
   render() {
-    const { drizzle, drizzleState } = this.props;
-    const initialized = drizzleState.drizzleStatus;
-    if (!initialized) return "Loading Account...."
     const web3 = window.web3;
-    const account = drizzleState.accounts[0];
-    const balance = web3.fromWei(drizzleState.accountBalances[account]);
+    const account = this.props.accounts[0];
+    const balance = web3.fromWei(this.props.accountBalances[account]);
     return (
       <div>
         <div>
@@ -22,4 +24,4 @@ class Account extends React.Component {
   }
 }
 
-export default Account;
+export default Account

@@ -1,0 +1,34 @@
+{
+  accounts,
+  accountBalances: {
+    address
+  }
+  contracts: {
+    contractName: {
+      initialized,
+      synced,
+      events,
+      callerFunctionName: {
+        argsHash: {
+          args,
+          value
+        }
+      }
+    }
+  },
+  transactions: {
+    txHash: {
+      confirmations,
+      error,
+      receipt,
+      status
+    }
+  },
+  transactionStack
+  drizzleStatus: {
+    initialized
+  }
+  web3: {
+    status
+  }
+}
