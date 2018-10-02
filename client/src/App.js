@@ -1,9 +1,9 @@
 // import './App.css'
 import React, { Component } from 'react';
 import AccountContainer from './containers/AccountContainer'
-import BettingContainer from './containers/BettingContainers'
-import Numbers from './components/Numbers'
-import Players from './components/Players'
+import BettingContainer from './containers/BettingContainer'
+import NumbersContainer from './containers/NumbersContainer'
+import PlayersContainer from './containers/PlayersContainer'
 
 class App extends Component {
   render() {
@@ -15,10 +15,10 @@ class App extends Component {
             <AccountContainer />
              <hr />
             <BettingContainer />
-            {/*<hr />
-            <Numbers/>
             <hr />
-            <Players/> */}
+            <NumbersContainer />
+            <hr />
+            <PlayersContainer />
           </div>
         </div>
       </div>
